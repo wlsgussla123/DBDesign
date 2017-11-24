@@ -1,0 +1,21 @@
+package com.mju.app.dao;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.mju.app.domain.Employee;
+
+@Repository
+@Transactional
+public class EmployeeDao {
+	private final String NAMESPACE = "com.mju.app.mapper.EmployeeMapper.";
+	
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
+	public Employee getEmployee(int id) {
+		return this.sqlSession.selectOne(NAMESPACE + "getEmployee", id);
+	}
+}
