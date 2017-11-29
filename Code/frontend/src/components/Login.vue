@@ -15,7 +15,7 @@
       </md-field>            
     </main>
     <footer>
-      <md-button :id="$style.loginBtn" class="md-raised md-primary">로그인</md-button>
+      <md-button :id="$style.loginBtn" class="md-raised md-primary" @click="login()">로그인</md-button>
     </footer>
   </section>
 </template>
@@ -29,6 +29,13 @@ export default {
       id: '',
       password: '',
     };
+  },
+
+  methods: {
+    login() {
+      console.log('test');
+      this.$router.push({ path: 'Main' });
+    },
   },
 };
 </script>
