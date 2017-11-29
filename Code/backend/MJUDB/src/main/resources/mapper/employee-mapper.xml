@@ -5,4 +5,8 @@
 	<select id="getEmployee" parameterType="java.lang.Integer" resultType="com.mju.app.domain.Employee">
 		SELECT * FROM employee WHERE emp_id = #{id};
 	</select>
+
+	<select id="loginEmployee" parameterType="com.mju.app.domain.Employee" resultType="com.mju.app.domain.Employee">
+		SELECT * FROM employee WHERE emp_email = #{empEmail} AND pass = #{pass};
+	</select>
 </mapper>

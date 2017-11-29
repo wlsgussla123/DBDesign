@@ -18,4 +18,12 @@ public class EmployeeDao {
 	public Employee getEmployee(int id) {
 		return this.sqlSession.selectOne(NAMESPACE + "getEmployee", id);
 	}
+
+	public Employee loginEmployee(String empEmail, String pass) {
+		Employee employee = new Employee();
+		employee.setEmpEmail(empEmail);
+		employee.setPass(pass);
+		
+		return this.sqlSession.selectOne(NAMESPACE + "loginEmployee", employee);
+	}
 }
