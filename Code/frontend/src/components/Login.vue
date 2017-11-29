@@ -12,7 +12,12 @@
       <md-field :md-toggle-password="false">
         <label>비밀번호</label>
         <md-input v-model="password" type="password"></md-input>
-      </md-field>            
+      </md-field>
+
+      <md-dialog-alert
+        :md-active.sync="alert"
+        md-content="아이디 혹은 비밀번호를 올바르게 입력하세요."
+        md-confirm-text="확인" />            
     </main>
     <footer>
       <md-button :id="$style.loginBtn" class="md-raised md-primary" @click="login()">로그인</md-button>
@@ -26,15 +31,27 @@ export default {
   data() {
     return {
       title: 'Database Design Project',
-      id: '',
-      password: '',
+      id: 'in.consectetuer@dolortempus.net',
+      password: 'rxx02ala9ir',
+      alert: false, // 로그인 실패 시
     };
   },
 
   methods: {
     login() {
-      console.log('test');
-      this.$router.push({ path: 'Main' });
+      this.axios.post('http://localhost:8080/app/login/', {
+        empEmail: this.id,
+        pass: this.password,
+      })
+      .then((res) => {
+        if (res.data) {
+          console.log(res);
+          this.$router.push({ path: 'Main' });
+        } else {
+          console.log('null');
+          this.alert = true;
+        }
+      });
     },
   },
 };
