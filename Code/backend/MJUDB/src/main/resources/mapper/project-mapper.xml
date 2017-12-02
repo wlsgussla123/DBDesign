@@ -8,4 +8,8 @@
 	<select id="getProject" parameterType="java.lang.Integer" resultType="com.mju.app.domain.Project">
 		SELECT * FROM project WHERE prj_id = #{id};
 	</select>
+	
+	<select id="getEndedProjects" parameterType="java.sql.Date" resultType="com.mju.app.domain.Project">
+		SELECT * FROM project WHERE prj_end_date <![CDATA[ < ]]> #{date};
+	</select>
 </mapper>

@@ -7,4 +7,5 @@ import com.mju.app.domain.Project;
 public interface ProjectService {
 	Project getProject(int id);
 	List<Project> getAllProjects();
+	List<Project> getEndedProjects();
 }

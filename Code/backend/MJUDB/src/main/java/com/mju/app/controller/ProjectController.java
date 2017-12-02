@@ -32,5 +32,11 @@ public class ProjectController {
 		logger.info("PROJECT Controller IN==>" + id);
 		return this.projectService.getProject(id);
 	}
+	
+	@RequestMapping(value ="/end")
+	public @ResponseBody List<Project> getEndedProjects() {
+		logger.info("PROJECT Controller IN==>");
+		return this.projectService.getEndedProjects();
+	}
 }
 	
