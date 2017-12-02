@@ -22,4 +22,9 @@ public class ProjectServiceImple implements ProjectService {
 	public Project getProject(int id) {
 		return this.projectDao.getProject(id);
 	}
+
+	@Override
+	public List<Project> getEndedProjects() {
+		return this.projectDao.getEndedProjects();
+	}
 }

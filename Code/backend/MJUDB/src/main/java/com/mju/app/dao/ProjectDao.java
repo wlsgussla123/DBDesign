@@ -1,5 +1,7 @@
 package com.mju.app.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -23,5 +25,12 @@ public class ProjectDao {
 	
 	public Project getProject(int id) {
 		return this.sqlSession.selectOne(NAMESPACE + "getProject", id);
+	}
+	
+	public List<Project> getEndedProjects() {
+		String date = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+		System.out.println(date);
+		
+		return this.sqlSession.selectList(NAMESPACE + "getEndedProjects", date);
 	}
 }
