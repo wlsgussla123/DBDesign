@@ -10,26 +10,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mju.app.HomeController;
-import com.mju.app.domain.Employee;
-import com.mju.app.service.EmployeeService;
+import com.mju.app.domain.Customer;
+import com.mju.app.service.CustomerService;
 
 @Controller
-@RequestMapping("/employee")
-public class EmployeeController {
+@RequestMapping("/customer")
+public class CustomerController {
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
 	@Autowired
-	private EmployeeService employeeService;
-
+	private CustomerService customerService;
+	
 	@RequestMapping(value = "")
-	public @ResponseBody List<Employee> getAllEmployees() {
-		return this.employeeService.getAllEmployees();
+	public @ResponseBody List<Customer> getAllCustomer() {
+		logger.info("getAllCustomer Controller IN==>");
+		return this.customerService.getAllCustomers();
 	}
 	
 	@RequestMapping(value = "/{id}")
-	public @ResponseBody Employee getEmployee(@PathVariable int id) {
-		logger.info("Controller IN==>" + id);
-		return this.employeeService.getEmployee(id);
+	public @ResponseBody Customer getCustomer(@PathVariable int id) {
+		logger.info("getCustomer Controller IN==>" + id);
+		return this.customerService.getCustomer(id);
 	}
 }

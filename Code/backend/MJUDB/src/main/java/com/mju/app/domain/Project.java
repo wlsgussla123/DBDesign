@@ -11,4 +11,6 @@ public class Project {
 	String prjName;
 	Date prjStartDate;
 	Date prjEndDate;
+	
+	Customer cusotmer;
 }
