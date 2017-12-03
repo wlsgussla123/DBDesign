@@ -1,5 +1,7 @@
 package com.mju.app.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,6 +16,10 @@ public class EmployeeDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+
+	public List<Employee> getAllEmployees() {
+		return this.sqlSession.selectList(NAMESPACE + "getAllEmployees");
+	}
 	
 	public Employee getEmployee(int id) {
 		return this.sqlSession.selectOne(NAMESPACE + "getEmployee", id);

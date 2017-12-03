@@ -11,4 +11,6 @@ public class Employee {
 	String empEdu;
 	String empEmail;
 	String pass;
+	
+	Department department;
 }

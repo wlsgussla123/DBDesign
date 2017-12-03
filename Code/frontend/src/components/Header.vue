@@ -13,24 +13,24 @@
       </md-toolbar>
 
       <md-list>
-        <md-list-item>
+        <md-list-item :class="$style.listItem">
           <md-icon>account_box</md-icon>
-          <span class="md-list-item-text">내 정보</span>
+          <span class="md-list-item-text">직원 리스트</span>
         </md-list-item>
 
-        <md-list-item>
+        <md-list-item :class="$style.listItem">
           <md-icon>description</md-icon>
-          <span class="md-list-item-text">내 프로젝트 관리</span>
+          <span class="md-list-item-text">프로젝트 리스트</span>
         </md-list-item>
 
-        <md-list-item>
+        <md-list-item :class="$style.listItem">
           <md-icon>assessment</md-icon>
-          <span class="md-list-item-text">내 평점 보기</span>
+          <span class="md-list-item-text">직원 평점 보기</span>
         </md-list-item>
 
-        <md-list-item>
-          <md-icon>error</md-icon>
-          <span class="md-list-item-text">또 뭐가 있지</span>
+        <md-list-item :class="$style.listItem">
+          <md-icon>work</md-icon>
+          <span class="md-list-item-text">투입 중 직원 보기</span>
         </md-list-item>
       </md-list>
     </md-drawer>
@@ -53,6 +53,10 @@ export default Component;
 <style lang="scss" module>
 #navHeader {
   border-bottom: 1px solid #d2d2d2;
+}
+
+.listItem {
+  cursor: pointer;
 }
 
 </style>

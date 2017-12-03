@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mju.app.mapper.ProjectMapper">
+	<select id="getAllProjects" resultType="com.mju.app.domain.Project">
+		SELECT * FROM project;
+	</select>
+
+	<select id="getProject" parameterType="java.lang.Integer" resultType="com.mju.app.domain.Project">
+		SELECT * FROM project WHERE prj_id = #{id};
+	</select>
+	
+	<select id="getEndedProjects" parameterType="java.sql.Date" resultType="com.mju.app.domain.Project">
+		SELECT * FROM project WHERE prj_end_date <![CDATA[ < ]]> #{date};
+	</select>
+</mapper>

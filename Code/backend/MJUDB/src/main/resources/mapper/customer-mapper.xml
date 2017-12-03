@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mju.app.mapper.CustomerMapper">
+	<select id="getAllCustomers" resultType="com.mju.app.domain.Customer">
+		SELECT * FROM customer;
+	</select>
+	
+	<select id="getCustomer" parameterType="java.lang.Integer" resultType="com.mju.app.domain.Customer">
+		SELECT * FROM customer WHERE cus_id = #{id};
+	</select>
+</mapper>
