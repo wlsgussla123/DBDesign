@@ -18,6 +18,12 @@
 		<collection property="department" resultMap="departmentResultMap"/>
 	</resultMap>
 	
+	<select id="getAllEmployees" resultMap="employeeResultMap">
+		SELECT * 
+		FROM employee as emp join department as dept
+		ON emp.DEPT_ID = dept.DEPT_ID;
+	</select>
+	
 	<select id="getEmployee" parameterType="java.lang.Integer" resultMap="employeeResultMap">
 		SELECT * 
 		FROM employee as emp join department as dept

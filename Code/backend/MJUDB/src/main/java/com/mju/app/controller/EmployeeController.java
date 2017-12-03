@@ -1,5 +1,7 @@
 package com.mju.app.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,11 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
+
+	@RequestMapping(value = "")
+	public @ResponseBody List<Employee> getAllEmployees() {
+		return this.employeeService.getAllEmployees();
+	}
 	
 	@RequestMapping(value = "/{id}")
 	public @ResponseBody Employee getEmployee(@PathVariable int id) {
