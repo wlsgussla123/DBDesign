@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Header from './Header';
+const Header = () => import('../components/Header');
 
 export default {
   name: 'Main',
