@@ -50,6 +50,9 @@ const Component = {
     routeEval() {
       this.$router.push({ path: 'Evaluation' });
     },
+    routeEmp() {
+      this.$router.push({ path: 'Employee' });
+    },
   },
 };
 

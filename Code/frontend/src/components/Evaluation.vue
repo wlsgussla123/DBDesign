@@ -40,7 +40,7 @@ export default {
   },
 
   mounted() {
-    this.axios.get('http://localhost:8080/app/project/end')
+    this.axios.get('http://localhost:8000/app/project')
     .then((res) => {
       console.log(res);
       this.projectList = res.data;

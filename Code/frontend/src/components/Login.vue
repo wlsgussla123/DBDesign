@@ -27,19 +27,19 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'login',
   data() {
     return {
       title: 'Database Design Project',
-      id: 'in.consectetuer@dolortempus.net',
-      password: 'rxx02ala9ir',
+      id: 'model9960@naver.com',
+      password: '9960',
       alert: false, // 로그인 실패 시
     };
   },
 
   methods: {
     login() {
-      this.axios.post('http://localhost:8080/app/login/', {
+      this.axios.post('http://localhost:8000/app/login/', {
         empEmail: this.id,
         pass: this.password,
       })
