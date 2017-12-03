@@ -12,5 +12,5 @@ public class Project {
 	Date prjStartDate;
 	Date prjEndDate;
 	
-	Customer cusotmer;
+	Customer customer;
 }
