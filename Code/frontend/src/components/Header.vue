@@ -18,7 +18,7 @@
           <span class="md-list-item-text">직원 리스트</span>
         </md-list-item>
 
-        <md-list-item :class="$style.listItem">
+        <md-list-item :class="$style.listItem" @click="projectList()">
           <md-icon>description</md-icon>
           <span class="md-list-item-text">프로젝트 리스트</span>
         </md-list-item>
@@ -44,6 +44,12 @@ const Component = {
     return {
       showNavigation: false,
     };
+  },
+
+  methods: {
+    projectList() {
+      this.$router.push({ path: 'ProjectList' });
+    },
   },
 };
 
