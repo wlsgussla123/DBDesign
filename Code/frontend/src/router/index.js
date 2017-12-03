@@ -4,6 +4,7 @@ import Router from 'vue-router';
 // components
 const Login = () => import('../components/Login');
 const Main = () => import('../components/Main');
+const Evaluation = () => import('../components/Evaluation');
 
 Vue.use(Router);
 
@@ -18,6 +19,11 @@ const routes = [
     path: '/main',
     name: 'Main',
     component: Main,
+  },
+  {
+    path: '/evaluation',
+    name: 'Evaluation',
+    component: Evaluation,
   },
 ];
 
