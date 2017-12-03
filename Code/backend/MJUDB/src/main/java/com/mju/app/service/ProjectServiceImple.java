@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mju.app.dao.CustomerDao;
 import com.mju.app.dao.ProjectDao;
 import com.mju.app.domain.Project;
 
@@ -12,15 +13,26 @@ import com.mju.app.domain.Project;
 public class ProjectServiceImple implements ProjectService {
 	@Autowired
 	private ProjectDao projectDao;
+	@Autowired
+	private CustomerDao customerDao;
 	
 	@Override
 	public List<Project> getAllProjects() {
-		return this.projectDao.getAllProjects();
+		List<Project> projectList = this.projectDao.getAllProjects();
+		
+		for(Project project : projectList) {
+			project.setCusotmer(this.customerDao.getCustomer(project.getCusId()));
+		}
+		
+		return projectList;
 	}
 	
 	@Override
 	public Project getProject(int id) {
-		return this.projectDao.getProject(id);
+		Project project = this.projectDao.getProject(id);
+		project.setCusotmer(this.customerDao.getCustomer(project.getCusId()));
+		
+		return project;
 	}
 
 	@Override
