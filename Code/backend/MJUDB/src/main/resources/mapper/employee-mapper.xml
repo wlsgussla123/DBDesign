@@ -2,8 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mju.app.mapper.EmployeeMapper">
-	<select id="getEmployee" parameterType="java.lang.Integer" resultType="com.mju.app.domain.Employee">
-		SELECT * FROM employee WHERE emp_id = #{id};
+	<resultMap type="com.mju.app.domain.Department" id="departmentResultMap">
+		<id property="deptId" column="dept_id" />
+		<result property="deptName" column="dept_name" />		
+	</resultMap>
+
+	<resultMap type="com.mju.app.domain.Employee" id="employeeResultMap">
+		<id property="empId" column="emp_id" />
+		<result property="deptId" column="dept_id" />
+		<result property="empName" column="emp_name" />
+		<result property="employeeRrn" column="employee_rrn" />
+		<result property="empEdu" column="emp_edu" />
+		<result property="empEmail" column="emp_email" />
+		<result property="pass" column="pass" />
+		<collection property="department" resultMap="departmentResultMap"/>
+	</resultMap>
+	
+	<select id="getEmployee" parameterType="java.lang.Integer" resultMap="employeeResultMap">
+		SELECT * 
+		FROM employee as emp join department as dept
+		ON emp.DEPT_ID = dept.DEPT_ID
+		WHERE emp.emp_id = #{id};
 	</select>
 
 	<select id="loginEmployee" parameterType="com.mju.app.domain.Employee" resultType="com.mju.app.domain.Employee">
