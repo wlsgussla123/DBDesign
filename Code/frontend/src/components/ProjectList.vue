@@ -22,7 +22,32 @@ import Header from './Header';
 export default {
     name: 'ProjectList',
     components: {
-    myHeader: Header,
+        myHeader: Header,
+    },
+
+    methods: {
+        getProjectList() {
+            console.log('함수호출');
+            this.axios.get('http://localhost:8090/app/project/', {})
+            .then((res) => {
+                if (res.data) {
+                    console.log(res);
+                    res.data.forEach(data => {
+                        console.log(data);
+                        this.rows.push(data);
+                    });
+                    console.log('확인');
+                } else {
+                    console.log('null');
+                    this.alert = true;
+                }
+            });
+        },
+    },
+
+    created: function() {
+        console.log('바로생성');
+        this.getProjectList();
     },
 
     data(){ 
@@ -30,12 +55,12 @@ export default {
             columns: [
                 {
                     label: 'Project Name',
-                    field: 'projectName',
+                    field: 'prjName',           
                     filterable: true,
                 },
                 {
                     label: '시작기간',
-                    field: 'startDay',
+                    field: 'prjStartDate',
                     type: 'date',
                     html: false,
                     filterable: true,
@@ -44,7 +69,7 @@ export default {
                 },
                 {
                     label: '종료기간',
-                    field: 'endDay',
+                    field: 'prjEndDate',
                     type: 'date',
                     html: false,
                     filterable: true,
@@ -53,34 +78,15 @@ export default {
                 },
                 {
                     label: '발주처',
-                    field: 'customer',
+                    field: 'cusotmer.cusName',
                     filterable: true,
                 },
             ],
 
-            //mockup data
-            rows: [
-                {id:1, projectName:"DBdeign",startDay: '2017-10-31',endDay: '2017-10-31',customer: '주식회사'},
-                {id:2, projectName:"Jane",startDay: '2017-10-31',endDay: '2011-10-31',customer: '주식회사'},
-                {id:3, projectName:"Susan",startDay: '2017-10-31',endDay: '2011-10-30',customer: '주식회사'},
-                {id:4, projectName:"Chris",startDay: '2017-10-31',endDay: '2011-10-11',customer: '주식회사'},
-                {id:5, projectName:"Dan",startDay: '2017-10-31',endDay: '2011-10-21',customer: '주식회사'},
-                {id:6, projectName:"John",startDay: '2017-10-31',endDay: '2011-10-31',customer: '주식회사'},
-                {id:7, projectName:"Jane",startDay: '2017-10-31',endDay: '2011-10-31',customer: '주식회사'},
-                {id:8, projectName:"Susan",startDay: '2017-10-31',endDay: '2013-10-31',customer: '주식회사'},
-                {id:9, projectName:"Chris",startDay: '2017-10-31',endDay: '2012-10-31',customer: '주식회사'},
-                {id:10, projectName:"Dan",startDay: '2017-10-31',endDay: '2011-10-31',customer: '주식회사'},
-                {id:11, projectName:"John",startDay: '2017-10-31',endDay: '2011-10-31',customer: '주식회사'},
-                {id:12, projectName:"Jane",startDay: '2017-10-31',endDay: '2011-07-31',customer: '주식회사'},
-                {id:13, projectName:"Susan",startDay: '2017-10-31',endDay: '2017-02-28',customer: '주식회사'},
-                {id:14, projectName:"Chris",startDay: '2017-10-31',endDay: '2017-02-28',customer: '주식회사'},
-                {id:15, projectName:"Dan",startDay: '2017-10-31',endDay: '2011-10-31',customer: '주식회사'},
-                {id:19, projectName:"Chris",startDay: '2017-10-31',endDay: '2011-10-31',customer: '주식회사'},
-                {id:20, projectName:"Dan",startDay: '2017-10-31',endDay: '2011-10-31',customer: '주식회사'},
-            ],
+            
+            rows: [],
         };
     },
-
 };
 </script>
 
