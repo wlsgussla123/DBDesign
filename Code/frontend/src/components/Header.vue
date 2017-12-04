@@ -28,7 +28,7 @@
           <span class="md-list-item-text">직원 평점 보기</span>
         </md-list-item>
 
-        <md-list-item :class="$style.listItem">
+        <md-list-item :class="$style.listItem" @click="routeEval()">
           <md-icon>work</md-icon>
           <span class="md-list-item-text">투입 중 직원 보기</span>
         </md-list-item>
@@ -47,6 +47,9 @@ const Component = {
   },
 
   methods: {
+    routeEval() {
+      this.$router.push({ path: 'Evaluation' });
+    },
     projectList() {
       this.$router.push({ path: 'ProjectList' });
     },

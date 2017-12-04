@@ -4,6 +4,7 @@ import VueGoodTable from 'vue-good-table';
 // components
 const Login = () => import('../components/Login');
 const Main = () => import('../components/Main');
+const Evaluation = () => import('../components/Evaluation');
 const ProjectList = () => import('../components/ProjectList');
 
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/projectlist',
     name: 'ProjectList',
     component: ProjectList,
+  },
+  {
+    path: '/evaluation',
+    name: 'Evaluation',
+    component: Evaluation,
   },
 ];
 
