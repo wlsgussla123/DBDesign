@@ -54,20 +54,30 @@ export default {
           filterable: true,
         },
       ],
-      rows: [],
+      rows: [
+      ],
     };
-  },
-  method: {
-    deptIdCondition() {
-      console.log(this.rows.deptId);
-    },
   },
   mounted() {
     this.axios.get('http://localhost:8000/app/employee')
     .then((res) => {
       console.log(res);
       this.rows = res.data;
+      console.log(this.rows[0].deptId);
+      for (var i in this.rows) {
+        if(this.rows[i].deptId === 4) {
+            this.rows[i].deptId = 'Programmer';
+        }
+      }
     });
+  },
+
+  method: {
+    // deptIdCondition() {
+    //   if(rows.deptId === 4){
+    //       rows.deptId = 'programmer';
+    //   }
+    // },
   },
 };
 </script>
