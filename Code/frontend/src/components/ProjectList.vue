@@ -20,73 +20,71 @@
 import Header from './Header';
 
 export default {
-    name: 'ProjectList',
-    components: {
-        myHeader: Header,
-    },
+  name: 'ProjectList',
+  components: {
+    myHeader: Header,
+  },
 
-    methods: {
-        getProjectList() {
-            console.log('함수호출');
-            this.axios.get('http://localhost:8090/app/project/', {})
-            .then((res) => {
-                if (res.data) {
-                    console.log(res);
-                    res.data.forEach(data => {
-                        console.log(data);
-                        this.rows.push(data);
-                    });
-                    console.log('확인');
-                } else {
-                    console.log('null');
-                    this.alert = true;
-                }
-            });
+  methods: {
+    getProjectList() {
+      console.log('함수호출');
+      this.axios.get('http://localhost:8080/app/project/', {})
+      .then((res) => {
+        if (res.data) {
+          console.log(res);
+          res.data.forEach((data) => {
+            console.log(data);
+            this.rows.push(data);
+          });
+          console.log('확인');
+        } else {
+          console.log('null');
+          this.alert = true;
+        }
+      });
+    },
+  },
+
+  created() {
+    console.log('바로생성');
+    this.getProjectList();
+  },
+
+  data() {
+    return {
+      columns: [
+        {
+          label: 'Project Name',
+          field: 'prjName',
+          filterable: true,
         },
-    },
-
-    created: function() {
-        console.log('바로생성');
-        this.getProjectList();
-    },
-
-    data(){ 
-        return {
-            columns: [
-                {
-                    label: 'Project Name',
-                    field: 'prjName',           
-                    filterable: true,
-                },
-                {
-                    label: '시작기간',
-                    field: 'prjStartDate',
-                    type: 'date',
-                    html: false,
-                    filterable: true,
-                    inputFormat: 'YYYY-MM-DD',
-                    outputFormat: 'YYYY-MM-DD',
-                },
-                {
-                    label: '종료기간',
-                    field: 'prjEndDate',
-                    type: 'date',
-                    html: false,
-                    filterable: true,
-                    inputFormat: 'YYYY-MM-DD',
-                    outputFormat: 'YYYY-MM-DD',
-                },
-                {
-                    label: '발주처',
-                    field: 'cusotmer.cusName',
-                    filterable: true,
-                },
-            ],
-
-            
-            rows: [],
-        };
-    },
+        {
+          label: '시작기간',
+          field: 'prjStartDate',
+          type: 'date',
+          html: false,
+          filterable: true,
+          inputFormat: 'YYYY-MM-DD',
+          outputFormat: 'YYYY-MM-DD',
+        },
+        {
+          label: '종료기간',
+          field: 'prjEndDate',
+          type: 'date',
+          html: false,
+          filterable: true,
+          inputFormat: 'YYYY-MM-DD',
+          outputFormat: 'YYYY-MM-DD',
+        },
+        {
+          label: '발주처',
+          field: 'cusotmer.cusName',
+          filterable: true,
+        },
+      ],
+      rows: [],
+    };
+  },
 };
 </script>
 
