@@ -13,7 +13,7 @@
       </md-toolbar>
 
       <md-list>
-        <md-list-item :class="$style.listItem">
+        <md-list-item :class="$style.listItem " @click="routeEmp()">
           <md-icon>account_box</md-icon>
           <span class="md-list-item-text">직원 리스트</span>
         </md-list-item>

@@ -5,6 +5,7 @@ import Router from 'vue-router';
 const Login = () => import('../components/Login');
 const Main = () => import('../components/Main');
 const Evaluation = () => import('../components/Evaluation');
+const Employee = () => import('../components/EmployeeList');
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ const routes = [
     path: '/evaluation',
     name: 'Evaluation',
     component: Evaluation,
+  },
+  {
+    path: '/employee',
+    name: 'Employee',
+    component: Employee,
   },
 ];
 
