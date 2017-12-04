@@ -13,13 +13,13 @@
 
     <vue-good-table
       title="직원을 선택하세요."
-      :onClick="toggle"
+      :onClick="grade"
       :columns="employeeColumns"
       :rows="employeeRows"
       :paginate="true"
       :lineNumbers="true"
       v-else>
-    </vue-good-table>    
+    </vue-good-table>
   </section>
 </template>
 
@@ -100,6 +100,7 @@ export default {
       employeeRows: [
         {
           id: 1,
+          empId: 29,
           empName: '루피',
           empStartDate: '2017-09-20',
           empEndDate: '2017-12-05',
@@ -109,6 +110,7 @@ export default {
         },
         {
           id: 2,
+          empId: 30,
           empName: '조로',
           empStartDate: '2017-09-20',
           empEndDate: '2017-12-05',
@@ -118,20 +120,12 @@ export default {
         },
         {
           id: 3,
+          empId: 33,
           empName: '상디',
           empStartDate: '2017-10-12',
           empEndDate: '2017-12-05',
           role: {
             roleName: '설계자',
-          },
-        },
-        {
-          id: 4,
-          empName: '우솝',
-          empStartDate: '2017-11-01',
-          empEndDate: '2017-12-05',
-          role: {
-            roleName: '분석자',
           },
         },
       ],
@@ -155,12 +149,19 @@ export default {
         console.log(res);
       });
     },
+
+    // 상세한 표를 보여줌.
+    grade(row, index) {
+      console.log('grade');
+      console.log(this.employeeRows[index].empName);
+      const empNum = this.employeeRows[index].empId;
+      this.$router.push({ name: 'Grade', params: { id: empNum } });
+    },
   },
 
   mounted() {
     this.axios.get('http://localhost:8080/app/project/end')
     .then((res) => {
-      console.log(res);
       if (res.data) {
         res.data.forEach((data) => {
           this.projectRows.push(data);
