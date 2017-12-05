@@ -33,4 +33,3 @@ public class EmployeeDao {
 		return this.sqlSession.selectOne(NAMESPACE + "loginEmployee", employee);
 	}
 }
-

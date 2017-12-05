@@ -23,9 +23,8 @@ public class LoginController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json; charset=utf8")
 	public @ResponseBody Employee login(@RequestBody Map<String, Object> map) {
-		System.out.print("aaaaa");
 		logger.info("Login Controller IN==>" + map.get("empEmail"));
 		logger.info("Login Controller IN==>" + map.get("pass"));
 		

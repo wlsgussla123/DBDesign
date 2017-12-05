@@ -39,7 +39,7 @@
 
 <script>
 const Component = {
-  name: 'Sidenav',
+  name: 'Header',
   data() {
     return {
       showNavigation: false,
