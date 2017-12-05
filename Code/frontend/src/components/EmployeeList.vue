@@ -64,15 +64,17 @@ export default {
       console.log(res);
       this.rows = res.data;
       console.log(this.rows[0].deptId);
-      for (var i in this.rows) {
-        if(this.rows[i].deptId === 4) {
-            this.rows[i].deptId = 'Programmer';
-        }
-      }
+
+      Object.keys(this.rows).forEach((key) => {
+        if (this.rows[key].deptId === 4) this.rows[key].deptId = 'Programmer';
+        else if (this.rows[key].deptId === 3) this.rows[key].deptId = 'Researcher';
+        else if (this.rows[key].deptId === 2) this.rows[key].deptId = 'Manager';
+        else if (this.rows[key].deptId === 1) this.rows[key].deptId = 'Marketer';
+      });
     });
   },
 
-  method: {
+  methods: {
     // deptIdCondition() {
     //   if(rows.deptId === 4){
     //       rows.deptId = 'programmer';
