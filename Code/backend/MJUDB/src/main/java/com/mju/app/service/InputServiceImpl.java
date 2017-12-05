@@ -29,8 +29,8 @@ public class InputServiceImpl implements InputService {
 	}
 	
 	@Override
-	public Input getInput(int id) {
-		Input input = this.inputDao.getInput(id);
+	public Input getInput(int prjId) {
+		Input input = this.inputDao.getInput(prjId);
 //		input.setCusotmer(this.customerDao.getCustomer(input.getCusId()));
 		
 		return input;
