@@ -9,13 +9,33 @@
 
       <canvas id="myChart" width="150" height="100"></canvas>
       <md-field v-if="toggle">
-        <label>커뮤니케이션 평가 내용</label>
-        <md-textarea v-model="communication" disabled></md-textarea>
+        <label>PM 커뮤니케이션 평가 내용</label>
+        <md-textarea v-model="this.pmData.commContents" disabled></md-textarea>
       </md-field>
 
-      <md-field v-else>
-        <label>업수 수행능력 평가 내용</label>
-        <md-textarea v-model="performance" disabled></md-textarea>
+      <md-field v-if="toggle">
+        <label>동료 커뮤니케이션 평가 내용</label>
+        <md-textarea v-model="this.coworkData.commContents" disabled></md-textarea>
+      </md-field>
+
+      <md-field v-if="toggle">
+        <label>고객 커뮤니케이션 평가 내용</label>
+        <md-textarea v-model="this.customerData.commContents" disabled></md-textarea>
+      </md-field>
+
+      <md-field v-if="!toggle">
+        <label>PM 업무 수행능력 평가 내용</label>
+        <md-textarea v-model="this.pmData.perfContents" disabled></md-textarea>
+      </md-field>
+  
+      <md-field v-if="!toggle">
+        <label>동료 업무 수행능력 평가 내용</label>
+        <md-textarea v-model="this.coworkData.perfContents" disabled></md-textarea>
+      </md-field>
+
+      <md-field v-if="!toggle">
+        <label>고객 업무 수행능력 평가 내용</label>
+        <md-textarea v-model="this.customerData.perfContents" disabled></md-textarea>
       </md-field>
     </div>
   </section>
@@ -45,23 +65,6 @@ const Component = {
       toggle: true, // false면 communication true면 performance
     };
   },
-  // beforeRouteEnter(to, from, next) {
-  //   axios.get('http://localhost:8080/app/evaluation')
-  //   .then((res) => {
-  //     next((vm) => {
-  //       console.log('next');
-  //       res.data.forEach((data) => {
-  //         // props로 넘어온 empID와 같은 ID를 가진 피평가자만 추가하자.
-  //         if (vm.id === data.subject) {
-  //           vm.data.push(data);
-  //           console.log(data);
-  //         }
-  //       });
-  //     });
-  //     console.log('brforeRoute');
-  //   });
-  // },
-
   watch: {
     toggle() {
       this.drawChart();
@@ -71,15 +74,14 @@ const Component = {
   methods: {
     drawChart() {
       const ctx = document.getElementById('myChart');
-      
       if (this.toggle) {
-        const communication = new Chart(ctx, {
+        const communication = new Chart(ctx, { // eslint-disable-line
           type: 'bar',
           data: {
             labels: ['PM', '동료', '고객'],
             datasets: [{
               label: '커뮤니케이션 능력',
-              data: [this.pmData.commGrade, 5, 4],
+              data: [this.pmData.commGrade, this.coworkData.commGrade, this.customerData.commGrade],
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -104,13 +106,13 @@ const Component = {
           },
         });
       } else {
-        const performance = new Chart(ctx, {
+        const performance = new Chart(ctx, { // eslint-disable-line
           type: 'bar',
           data: {
             labels: ['PM', '동료', '고객'],
             datasets: [{
               label: '업무수행 능력',
-              data: [this.pmData.commGrade, 5, 4],
+              data: [this.pmData.perfGrade, this.coworkData.perfGrade, this.customerData.perfGrade],
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -158,7 +160,6 @@ const Component = {
           }
         }
       });
-      console.log(this.pmData.commGrade);
       this.drawChart(); // data set을 하고나서 그리자.
     });
   },
