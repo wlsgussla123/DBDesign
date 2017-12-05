@@ -13,12 +13,12 @@
       </md-toolbar>
 
       <md-list>
-        <md-list-item :class="$style.listItem " @click="routeEmp()">
+        <md-list-item :class="$style.listItem " @click="routeEmployee()">
           <md-icon>account_box</md-icon>
           <span class="md-list-item-text">직원 리스트</span>
         </md-list-item>
 
-        <md-list-item :class="$style.listItem" @click="projectList()">
+        <md-list-item :class="$style.listItem" @click="routeProject()">
           <md-icon>description</md-icon>
           <span class="md-list-item-text">프로젝트 리스트</span>
         </md-list-item>
@@ -28,7 +28,7 @@
           <span class="md-list-item-text">직원 평점 보기</span>
         </md-list-item>
 
-        <md-list-item :class="$style.listItem" @click="routeEval()">
+        <md-list-item :class="$style.listItem" @click="routeEvaluation()">
           <md-icon>work</md-icon>
           <span class="md-list-item-text">투입 중 직원 보기</span>
         </md-list-item>
@@ -47,16 +47,16 @@ const Component = {
   },
 
   methods: {
-    routeEval() {
-      this.$router.push({ path: 'Evaluation' });
+    routeEvaluation() {
+      this.$router.push({ name: 'Evaluation' });
     },
 
-    routeEmp() {
-      this.$router.push({ path: 'Employee' });
+    routeEmployee() {
+      this.$router.push({ name: 'EmployeeList' });
     },
 
-    projectList() {
-      this.$router.push({ path: 'ProjectList' });
+    routeProject() {
+      this.$router.push({ name: 'ProjectList' });
     },
   },
 };

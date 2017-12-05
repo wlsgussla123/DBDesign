@@ -17,7 +17,7 @@
 const Header = () => import('../components/Header');
 
 export default {
-  name: 'Employee',
+  name: 'EmployeeList',
   components: {
     myHeader: Header,
   },
