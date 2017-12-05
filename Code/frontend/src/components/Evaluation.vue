@@ -1,21 +1,25 @@
 <template>
   <section>
     <my-header></my-header>
+    <vue-good-table
+      title="프로젝트를 선택해주세요."
+      :onClick="toggle"
+      :columns="projectColumns"
+      :rows="projectRows"
+      :paginate="true"
+      :lineNumbers="true"
+      v-if="emp">
+    </vue-good-table>    
 
-    <md-table v-model="projectList" md-card>
-      <md-table-toolbar>
-        <h1 :id="$style.title" class="md-title">프로젝트를 선택해주세요.</h1>
-      </md-table-toolbar>
-
-      <md-table-row :id="$style.tableRow" slot="md-table-row" slot-scope="{ item }" @click.native="toggle()">
-          <md-table-cell md-label="번호" md-numeric>{{ item.prjId }}</md-table-cell>
-          <md-table-cell md-label="이름">{{ item.prjName }}</md-table-cell>
-          <md-table-cell md-label="시작일">{{ item.prjStartDate }}</md-table-cell>
-          <md-table-cell md-label="종료일">{{ item.prjEndDate }}</md-table-cell>
-          <md-table-cell md-label="고객사">{{ item.customer.cusName }}</md-table-cell>
-          <md-table-cell md-label="고객사 이메일">{{ item.customer.cusEmail }}</md-table-cell>
-      </md-table-row>
-    </md-table>
+    <vue-good-table
+      title="직원을 선택하세요."
+      :onClick="toggle"
+      :columns="employeeColumns"
+      :rows="employeeRows"
+      :paginate="true"
+      :lineNumbers="true"
+      v-else>
+    </vue-good-table>    
   </section>
 </template>
 
@@ -29,13 +33,127 @@ export default {
   },
   data() {
     return {
+      emp: true,
       projectList: [],
+      projectColumns: [
+        {
+          label: '프로젝트 이름',
+          field: 'prjName',
+          filterable: true,
+        },
+        {
+          label: '시작기간',
+          field: 'prjStartDate',
+          type: 'date',
+          html: false,
+          filterable: true,
+          inputFormat: 'YYYY-MM-DD',
+          outputFormat: 'YYYY-MM-DD',
+        },
+        {
+          label: '종료기간',
+          field: 'prjEndDate',
+          type: 'date',
+          html: false,
+          filterable: true,
+          inputFormat: 'YYYY-MM-DD',
+          outputFormat: 'YYYY-MM-DD',
+        },
+        {
+          label: '발주처',
+          field: 'customer.cusName',
+          filterable: true,
+        },
+      ],
+
+      employeeColumns: [
+        {
+          label: '직원 이름',
+          field: 'empName',
+          filterable: true,
+        },
+        {
+          label: '투입 시작',
+          field: 'empStartDate',
+          type: 'date',
+          html: false,
+          filterable: true,
+          inputFormat: 'YYYY-MM-DD',
+          outputFormat: 'YYYY-MM-DD',
+        },
+        {
+          label: '투입 종료',
+          field: 'empEndDate',
+          type: 'date',
+          html: false,
+          filterable: true,
+          inputFormat: 'YYYY-MM-DD',
+          outputFormat: 'YYYY-MM-DD',
+        },
+        {
+          label: '직책',
+          field: 'role.roleName',
+          filterable: true,
+        },
+      ],
+      projectRows: [],
+      employeeRows: [
+        {
+          id: 1,
+          empName: '루피',
+          empStartDate: '2017-09-20',
+          empEndDate: '2017-12-05',
+          role: {
+            roleName: 'PM',
+          },
+        },
+        {
+          id: 2,
+          empName: '조로',
+          empStartDate: '2017-09-20',
+          empEndDate: '2017-12-05',
+          role: {
+            roleName: 'PL',
+          },
+        },
+        {
+          id: 3,
+          empName: '상디',
+          empStartDate: '2017-10-12',
+          empEndDate: '2017-12-05',
+          role: {
+            roleName: '설계자',
+          },
+        },
+        {
+          id: 4,
+          empName: '우솝',
+          empStartDate: '2017-11-01',
+          empEndDate: '2017-12-05',
+          role: {
+            roleName: '분석자',
+          },
+        },
+      ],
     };
   },
 
   methods: {
-    toggle() {
+    toggle(row, index) {
       console.log('toggle');
+      console.log(index);
+      this.emp = !this.emp;
+      // this.getEmployee(index); // 서버가 아직 구현 안됨.
+    },
+
+    // 실제로 프로젝트에 투입된 employee 정보를 받는 곳.
+    getEmployee(index) {
+      const prjNum = this.projectRows[index].prjId;
+      console.log(prjNum);
+      this.axios.get(`http://localhost:8080/app/input/${prjNum}`)
+      .then((res) => {
+        console.log(res);
+      });
     },
   },
 
@@ -43,7 +161,16 @@ export default {
     this.axios.get('http://localhost:8000/app/project')
     .then((res) => {
       console.log(res);
-      this.projectList = res.data;
+      if (res.data) {
+        res.data.forEach((data) => {
+          this.projectRows.push(data);
+        });
+      } else {
+        console.log('data null');
+      }
+    })
+    .catch((err) => {
+      console.log(err);
     });
   },
 };

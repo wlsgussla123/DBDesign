@@ -1,13 +1,18 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-
+import VueGoodTable from 'vue-good-table';
 // components
 const Login = () => import('../components/Login');
 const Main = () => import('../components/Main');
 const Evaluation = () => import('../components/Evaluation');
+
 const Employee = () => import('../components/EmployeeList');
+const ProjectList = () => import('../components/ProjectList');
+
+
 
 Vue.use(Router);
+Vue.use(VueGoodTable);
 
 const routes = [
   {
@@ -20,6 +25,12 @@ const routes = [
     path: '/main',
     name: 'Main',
     component: Main,
+  },
+
+  {
+    path: '/projectlist',
+    name: 'ProjectList',
+    component: ProjectList,
   },
   {
     path: '/evaluation',
