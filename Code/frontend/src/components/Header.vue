@@ -53,10 +53,10 @@ const Component = {
 
     routeEmp() {
       this.$router.push({ path: 'Employee' });
+    },
 
     projectList() {
       this.$router.push({ path: 'ProjectList' });
-
     },
   },
 };
