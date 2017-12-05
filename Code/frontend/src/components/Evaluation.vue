@@ -160,7 +160,7 @@ export default {
   },
 
   mounted() {
-    this.axios.get('http://localhost:8080/app/project/end')
+    this.axios.get('http://localhost:8000/app/project')
     .then((res) => {
       if (res.data) {
         res.data.forEach((data) => {
