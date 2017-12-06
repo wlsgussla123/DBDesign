@@ -26,9 +26,9 @@ public class InputController {
 	}
 	
 	@RequestMapping(value = "/{prjId}")
-	public @ResponseBody Input getInput(@PathVariable int prjId) {
+	public @ResponseBody List<Input> getInput(@PathVariable int prjId) {
 //		logger.info("PROJECT Controller IN==>" + id);
-		return this.inputService.getInput(prjId);
+		return this.inputService.getInputsByPrj(prjId);
 	}
 
 

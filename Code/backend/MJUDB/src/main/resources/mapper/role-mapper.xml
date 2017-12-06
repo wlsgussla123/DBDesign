@@ -7,7 +7,7 @@
 	</select>
 
 	<select id="getRole" parameterType="java.lang.Integer" resultType="com.mju.app.domain.Role">
-		SELECT * FROM input WHERE role_id = #{id};
+		SELECT * FROM role WHERE role_id = #{id};
 	</select>
 	
 </mapper>

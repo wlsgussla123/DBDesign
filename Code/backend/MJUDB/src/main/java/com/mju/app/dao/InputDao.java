@@ -21,8 +21,8 @@ public class InputDao {
 		return this.sqlSession.selectList(NAMESPACE + "getAllInputs");
 	}
 	
-	public Input getInput(int prjId) {
-		return this.sqlSession.selectOne(NAMESPACE + "getInput", prjId);
+	public List<Input> getInputsByPrj(int prjId) {
+		return this.sqlSession.selectList(NAMESPACE + "getInputsByPrj", prjId);
 	}
 	
 }
