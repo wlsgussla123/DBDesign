@@ -10,7 +10,6 @@ public class Input {
 	int prjId;
 	Date empStartDate;
 	Date empEndDate;
-	int roleId;
-	
+	int roleId;	
 	Role role ;
 }

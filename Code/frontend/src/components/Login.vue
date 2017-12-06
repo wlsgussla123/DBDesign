@@ -39,7 +39,8 @@ export default {
 
   methods: {
     login() {
-      this.axios.post('http://localhost:8080/app/login/', {
+      // this.$router.push({ path: 'Main' });
+      this.axios.post('http://localhost:8090/app/login/', {
         empEmail: this.id,
         pass: this.password,
       })

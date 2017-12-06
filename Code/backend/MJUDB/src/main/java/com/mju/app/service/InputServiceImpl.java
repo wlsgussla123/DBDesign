@@ -10,6 +10,16 @@ import com.mju.app.domain.Input;
 
 @Service
 public class InputServiceImpl implements InputService {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.mju.app.dao.InputDao;
+import com.mju.app.domain.Input;
+
+@Service
+public class InputServiceImpl implements InputService {
+	private static final Logger logger = LoggerFactory.getLogger(Input.class);
+
 	@Autowired
 	private InputDao inputDao;
 	
@@ -21,8 +31,8 @@ public class InputServiceImpl implements InputService {
 	
 	@Override
 	public List<Input> getInputsByPrj(int prjId) {
+		logger.info("InputService IN==>" + prjId);
 		List<Input> inputs = this.inputDao.getInputsByPrj(prjId);
 		return inputs;
 	}
-
 }
