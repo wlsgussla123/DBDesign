@@ -23,7 +23,7 @@
 		ON input.role_id = role.role_id;
 	</select>
 
-	<select id="getinput" parameterType="java.lang.Integer" resultType="com.mju.app.domain.Input">
+	<select id="getInput" parameterType="java.lang.Integer" resultType="com.mju.app.domain.Input">
 		SELECT * FROM input WHERE prj_id = #{prjId};
 	</select>
 	
