@@ -19,9 +19,8 @@ public class ProjectServiceImple implements ProjectService {
 	@Override
 	public List<Project> getAllProjects() {
 		List<Project> projectList = this.projectDao.getAllProjects();
-		
 		for(Project project : projectList) {
-			project.setCusotmer(this.customerDao.getCustomer(project.getCusId()));
+			setCustomer(project);
 		}
 		
 		return projectList;
@@ -30,13 +29,22 @@ public class ProjectServiceImple implements ProjectService {
 	@Override
 	public Project getProject(int id) {
 		Project project = this.projectDao.getProject(id);
-		project.setCusotmer(this.customerDao.getCustomer(project.getCusId()));
+		setCustomer(project);
 		
 		return project;
 	}
 
 	@Override
 	public List<Project> getEndedProjects() {
-		return this.projectDao.getEndedProjects();
+		List<Project> projectList = this.projectDao.getEndedProjects();
+		for(Project project : projectList) {
+			setCustomer(project);
+		}
+		
+		return projectList;
+	}
+	
+	public void setCustomer(Project project) {
+		project.setCustomer(this.customerDao.getCustomer(project.getCusId()));
 	}
 }
