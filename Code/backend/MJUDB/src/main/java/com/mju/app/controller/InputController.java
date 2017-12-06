@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mju.app.domain.Input;
 import com.mju.app.domain.Project;
@@ -15,7 +17,7 @@ import com.mju.app.service.InputService;
 @Controller
 @RequestMapping("/input")
 public class InputController {
-//	private static final Logger logger = LoggerFactory.getLogger(Input.class);
+	private static final Logger logger = LoggerFactory.getLogger(Input.class);
 	
 	@Autowired
 	private InputService inputService;
@@ -26,10 +28,8 @@ public class InputController {
 	}
 	
 	@RequestMapping(value = "/{prjId}")
-	public @ResponseBody Input getInput(@PathVariable int prjId) {
-//		logger.info("PROJECT Controller IN==>" + id);
+	public @ResponseBody List<Input> getInput(@PathVariable int prjId) {
+		logger.info("Input Controller IN==>" + prjId);
 		return this.inputService.getInput(prjId);
 	}
-
-
 }

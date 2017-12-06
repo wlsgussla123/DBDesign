@@ -7,11 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.mju.app.domain.Input;
 
 @Repository
 @Transactional
 public class InputDao {
+	private static final Logger logger = LoggerFactory.getLogger(Input.class);
 	private final String NAMESPACE = "com.mju.app.mapper.InputMapper.";
 
 	@Autowired
@@ -21,8 +25,9 @@ public class InputDao {
 		return this.sqlSession.selectList(NAMESPACE + "getAllInputs");
 	}
 	
-	public Input getInput(int prjId) {
-		return this.sqlSession.selectOne(NAMESPACE + "getInput", prjId);
+	public List<Input> getInput(int prjId) {
+		logger.info("inputDao ==>" + prjId);
+		return this.sqlSession.selectList(NAMESPACE + "getInput", prjId);
 	}
 	
 }
