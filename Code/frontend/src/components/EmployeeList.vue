@@ -59,27 +59,23 @@ export default {
     };
   },
   mounted() {
-    this.axios.get('http://localhost:8000/app/employee')
+    this.axios.get('http://localhost:8080/app/employee')
     .then((res) => {
       console.log(res);
       this.rows = res.data;
-      console.log(this.rows[0].deptId);
-
-      Object.keys(this.rows).forEach((key) => {
-        if (this.rows[key].deptId === 4) this.rows[key].deptId = 'Programmer';
-        else if (this.rows[key].deptId === 3) this.rows[key].deptId = 'Researcher';
-        else if (this.rows[key].deptId === 2) this.rows[key].deptId = 'Manager';
-        else if (this.rows[key].deptId === 1) this.rows[key].deptId = 'Marketer';
-      });
+      this.deptIdCondition();
     });
   },
 
   methods: {
-    // deptIdCondition() {
-    //   if(rows.deptId === 4){
-    //       rows.deptId = 'programmer';
-    //   }
-    // },
+    deptIdCondition() {
+      Object.keys(this.rows).forEach((key) => {
+        if (this.rows[key].deptId === 4) this.rows[key].deptId = '개발 부서';
+        else if (this.rows[key].deptId === 3) this.rows[key].deptId = '연구개발 부서';
+        else if (this.rows[key].deptId === 2) this.rows[key].deptId = '경영관리 부서';
+        else if (this.rows[key].deptId === 1) this.rows[key].deptId = '마케팅 부서';
+      });
+    },
   },
 };
 </script>

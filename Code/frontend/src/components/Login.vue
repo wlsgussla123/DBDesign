@@ -21,6 +21,7 @@
     </main>
     <footer>
       <md-button :id="$style.loginBtn" class="md-raised md-primary" @click="login()">로그인</md-button>
+      <md-button :id="$style.loginBtn" class="md-raised md-primary" @click="SignUp()">회원가입</md-button>
     </footer>
   </section>
 </template>
@@ -40,7 +41,7 @@ export default {
   methods: {
     login() {
       // this.$router.push({ path: 'Main' });
-      this.axios.post('http://localhost:8090/app/login/', {
+      this.axios.post('http://localhost:8080/app/login/', {
         empEmail: this.id,
         pass: this.password,
       })
@@ -53,6 +54,10 @@ export default {
           this.alert = true;
         }
       });
+    },
+
+    SignUp() {
+      this.$router.push({ path: 'SignUp' });
     },
   },
 };

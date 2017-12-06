@@ -9,6 +9,7 @@ const Evaluation = () => import('../components/Evaluation');
 const ProjectList = () => import('../components/ProjectList');
 const EmployeeList = () => import('../components/EmployeeList');
 const Grade = () => import('../components/Grade'); // 평가 페이지에서 쓰임.
+const SignUp = () => import('../components/SignUp');
 
 Vue.use(Router);
 Vue.use(VueGoodTable);
@@ -46,6 +47,11 @@ const routes = [
     name: 'Grade',
     component: Grade,
     props: true,
+  },
+  {
+    path: '/SignUp',
+    name: 'SignUp',
+    component: SignUp,
   },
 ];
 
