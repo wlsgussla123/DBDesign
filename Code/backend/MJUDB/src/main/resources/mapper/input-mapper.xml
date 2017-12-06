@@ -23,16 +23,11 @@
 		where input.role_id = role.role_id;
 	</select>
 
-<<<<<<< Updated upstream
-	<select id="getinput" parameterType="java.lang.Integer" resultType="com.mju.app.domain.Input">
-		SELECT * FROM input WHERE prj_id = #{prjId};
-=======
-	<select id="getInput" parameterType="java.lang.Integer" resultMap="inputResultMap">
-		SELECT input.*, role.role_name 
+	<select id="getInputsByPrj" parameterType="java.lang.Integer" resultMap="inputResultMap">
+		SELECT *
 		FROM input, role
 		WHERE prj_id = #{prjId} 
 			AND input.role_id = role.role_id;
->>>>>>> Stashed changes
 	</select>
-	
+
 </mapper>
