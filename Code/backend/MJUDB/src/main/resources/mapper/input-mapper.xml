@@ -2,29 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mju.app.mapper.InputMapper">
 
-	<resultMap type="com.mju.app.domain.Employee" id="employeeResultMap">
-		<id property="empId" column="emp_id" />
-		<result property="deptId" column="dept_id" />
-		<result property="empName" column="emp_name" />
-		<result property="employeeRrn" column="employee_rrn" />
-		<result property="empEdu" column="emp_edu" />
-		<result property="empEmail" column="emp_email" />
-		<result property="pass" column="pass" />
-	</resultMap>
-	
+
 	<resultMap type="com.mju.app.domain.Role" id="roleResultMap">
 		<id property="roleId" column="role_id" />
 		<result property="roleName" column="role_name" />
 	</resultMap>
 
-	<select id="getAllInputs" resultType="com.mju.app.domain.Input">
+	<resultMap type="com.mju.app.domain.Input" id="inputResultMap">
+		<id property="empId" column="emp_id" />
+		<id property="prjId" column="prj_id" />
+		<result property="empStartDate" column="emp_start_date" />
+		<result property="empEndDate" column="emp_end_date" />
+		<result property="roleId" column="role_id" />
+		<collection property="role" resultMap="roleResultMap"/>
+	</resultMap>
+	
+
+	<select id="getAllInputs" resultMap="inputResultMap">
 		SELECT * 
-		FROM input join role 
-		ON input.role_id = role.role_id;
+		FROM input, role 
+		where input.role_id = role.role_id;
 	</select>
 
-	<select id="getInput" parameterType="java.lang.Integer" resultType="com.mju.app.domain.Input">
-		SELECT * FROM input WHERE prj_id = #{prjId};
+	<select id="getInputsByPrj" parameterType="java.lang.Integer" resultMap="inputResultMap">
+		SELECT *
+		FROM input, role
+		WHERE prj_id = #{prjId} 
+			AND input.role_id = role.role_id;
 	</select>
-	
+
 </mapper>

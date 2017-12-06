@@ -7,5 +7,5 @@ import com.mju.app.domain.Input;
 
 public interface InputService {
 	List<Input> getAllInputs();
-	List<Input> getInput(int prjId);
+	List<Input> getInputsByPrj(int prjId);
 }

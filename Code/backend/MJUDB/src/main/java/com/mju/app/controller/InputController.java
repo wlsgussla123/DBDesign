@@ -17,7 +17,7 @@ import com.mju.app.service.InputService;
 @Controller
 @RequestMapping("/input")
 public class InputController {
-	private static final Logger logger = LoggerFactory.getLogger(Input.class);
+  private static final Logger logger = LoggerFactory.getLogger(Input.class);
 	
 	@Autowired
 	private InputService inputService;
@@ -28,8 +28,8 @@ public class InputController {
 	}
 	
 	@RequestMapping(value = "/{prjId}")
-	public @ResponseBody List<Input> getInput(@PathVariable int prjId) {
+	public @ResponseBody List<Input> getInputsByPrj(@PathVariable int prjId) {
 		logger.info("Input Controller IN==>" + prjId);
-		return this.inputService.getInput(prjId);
+		return this.inputService.getInputsByPrj(prjId);
 	}
 }

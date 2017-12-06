@@ -15,6 +15,7 @@ import com.mju.app.domain.Input;
 @Repository
 @Transactional
 public class InputDao {
+
 	private static final Logger logger = LoggerFactory.getLogger(Input.class);
 	private final String NAMESPACE = "com.mju.app.mapper.InputMapper.";
 
@@ -25,9 +26,8 @@ public class InputDao {
 		return this.sqlSession.selectList(NAMESPACE + "getAllInputs");
 	}
 	
-	public List<Input> getInput(int prjId) {
-		logger.info("inputDao ==>" + prjId);
-		return this.sqlSession.selectList(NAMESPACE + "getInput", prjId);
+	public List<Input> getInputsByPrj(int prjId) {
+    logger.info("inputDao ==>" + prjId);
+		return this.sqlSession.selectList(NAMESPACE + "getInputsByPrj", prjId);
 	}
-	
 }
