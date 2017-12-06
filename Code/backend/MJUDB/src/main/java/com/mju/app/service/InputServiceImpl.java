@@ -13,17 +13,11 @@ import com.mju.app.domain.Project;
 @Service
 public class InputServiceImpl implements InputService {
 	@Autowired
-	private ProjectDao projectDao;
-	@Autowired
 	private InputDao inputDao;
 	
 	@Override
 	public List<Input> getAllInputs() {
 		List<Input> inputList = this.inputDao.getAllInputs();
-		
-		/*for(Input input : inputList) {
-			input.setCusotmer(this.inputDao.getCustomer(input.getCusId()));
-		}*/
 		
 		return inputList;
 	}

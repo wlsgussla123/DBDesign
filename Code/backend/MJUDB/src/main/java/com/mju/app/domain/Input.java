@@ -11,4 +11,6 @@ public class Input {
 	Date empStartDate;
 	Date empEndDate;
 	int roleId;
+	
+	Role role ;
 }
