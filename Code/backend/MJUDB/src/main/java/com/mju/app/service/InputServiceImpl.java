@@ -2,16 +2,10 @@ package com.mju.app.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.mju.app.dao.InputDao;
-import com.mju.app.domain.Input;
-
-@Service
-public class InputServiceImpl implements InputService {
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.mju.app.dao.InputDao;
 import com.mju.app.domain.Input;
