@@ -97,38 +97,7 @@ export default {
         },
       ],
       projectRows: [],
-      employeeRows: [
-        {
-          id: 1,
-          empId: 29,
-          empName: '루피',
-          empStartDate: '2017-09-20',
-          empEndDate: '2017-12-05',
-          role: {
-            roleName: 'PM',
-          },
-        },
-        {
-          id: 2,
-          empId: 30,
-          empName: '조로',
-          empStartDate: '2017-09-20',
-          empEndDate: '2017-12-05',
-          role: {
-            roleName: 'PL',
-          },
-        },
-        {
-          id: 3,
-          empId: 33,
-          empName: '상디',
-          empStartDate: '2017-10-12',
-          empEndDate: '2017-12-05',
-          role: {
-            roleName: '설계자',
-          },
-        },
-      ],
+      employeeRows: [],
     };
   },
 
@@ -137,16 +106,21 @@ export default {
       console.log('toggle');
       console.log(index);
       this.emp = !this.emp;
-      // this.getEmployee(index); // 서버가 아직 구현 안됨.
+      this.getEmployee(index); // 서버가 아직 구현 안됨.
     },
 
     // 실제로 프로젝트에 투입된 employee 정보를 받는 곳.
     getEmployee(index) {
       const prjNum = this.projectRows[index].prjId;
-      console.log(prjNum);
       this.axios.get(`http://localhost:8080/app/input/${prjNum}`)
       .then((res) => {
-        console.log(res);
+        if (res.data) {
+          res.data.forEach((data) => {
+            this.employeeRows.push(data);
+          });
+        } else {
+          console.log('input employee is null');
+        }
       });
     },
 
@@ -155,6 +129,8 @@ export default {
       console.log('grade');
       console.log(this.employeeRows[index].empName);
       const empNum = this.employeeRows[index].empId;
+      // const empName = this.employeeRos[index].empName;
+
       this.$router.push({ name: 'Grade', params: { id: empNum } });
     },
   },

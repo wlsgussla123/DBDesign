@@ -24,13 +24,13 @@
         </md-list-item>
 
         <md-list-item :class="$style.listItem">
-          <md-icon>assessment</md-icon>
-          <span class="md-list-item-text">직원 평점 보기</span>
+          <md-icon>work</md-icon>
+          <span class="md-list-item-text">투입 중 직원 보기</span>
         </md-list-item>
 
         <md-list-item :class="$style.listItem" @click="routeEvaluation()">
-          <md-icon>work</md-icon>
-          <span class="md-list-item-text">투입 중 직원 보기</span>
+          <md-icon>assessment</md-icon>
+          <span class="md-list-item-text">직원 평점 보기</span>
         </md-list-item>
       </md-list>
     </md-drawer>
