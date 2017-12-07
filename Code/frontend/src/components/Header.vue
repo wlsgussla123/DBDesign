@@ -23,7 +23,7 @@
           <span class="md-list-item-text">프로젝트 리스트</span>
         </md-list-item>
 
-        <md-list-item :class="$style.listItem">
+        <md-list-item :class="$style.listItem" @click="routeInput()">
           <md-icon>work</md-icon>
           <span class="md-list-item-text">투입 중 직원 보기</span>
         </md-list-item>
@@ -47,6 +47,10 @@ const Component = {
   },
 
   methods: {
+    routeInput() {
+      this.$router.push({ name: 'Input' });
+    },
+
     routeEvaluation() {
       this.$router.push({ name: 'Evaluation' });
     },
