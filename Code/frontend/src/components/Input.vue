@@ -1,19 +1,19 @@
 <template>
-  <section>
+  <section id="$style.inputContainer">
     <my-header></my-header>
+
     <vue-good-table
-      title="프로젝트를 선택해주세요."
+      title="투입된 직원을 볼 프로젝트를 선택해주세요."
       :onClick="toggle"
       :columns="projectColumns"
       :rows="projectRows"
       :paginate="true"
       :lineNumbers="true"
       v-if="!emp">
-    </vue-good-table>    
+    </vue-good-table>
 
     <vue-good-table
-      title="직원을 선택하세요."
-      :onClick="grade"
+      title="투입 중 직원"
       :columns="employeeColumns"
       :rows="employeeRows"
       :paginate="true"
@@ -27,10 +27,11 @@
 const Header = () => import('../components/Header');
 
 export default {
-  name: 'Evaluation',
+  name: 'Input',
   components: {
     myHeader: Header,
   },
+
   data() {
     return {
       emp: false,
@@ -65,7 +66,6 @@ export default {
           filterable: true,
         },
       ],
-
       employeeColumns: [
         {
           label: '직원 이름',
@@ -103,13 +103,11 @@ export default {
 
   methods: {
     toggle(row, index) {
-      console.log('toggle');
-      console.log(index);
       this.emp = !this.emp;
-      this.getEmployee(index); // 서버가 아직 구현 안됨.
+      this.getEmployee(index);
     },
 
-    // 실제로 프로젝트에 투입된 employee 정보를 받는 곳.
+    // 프로젝트 번호를 받고, 그 프로젝트에 투입된 직원 정보를 받는다.
     getEmployee(index) {
       const prjNum = this.projectRows[index].prjId;
       this.axios.get(`http://localhost:8080/app/input/${prjNum}`)
@@ -121,54 +119,24 @@ export default {
         } else {
           console.log('input employee is null');
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    },
-
-    // 상세한 표를 보여줌.
-    grade(row, index) {
-      console.log('grade');
-      console.log(this.employeeRows[index].empName);
-      const empNum = this.employeeRows[index].empId;
-      // const empName = this.employeeRos[index].empName;
-
-      this.$router.push({ name: 'Grade', params: { id: empNum } });
     },
   },
 
   mounted() {
-    this.axios.get('http://localhost:8080/app/project/end')
+    this.axios.get('http://localhost:8080/app/project')
     .then((res) => {
-      if (res.data) {
-        res.data.forEach((data) => {
-          this.projectRows.push(data);
-        });
-      } else {
-        console.log('data null');
-      }
-    })
-    .catch((err) => {
-      console.log(err);
+      res.data.forEach((data) => {
+        this.projectRows.push(data);
+      });
     });
   },
 };
+
 </script>
 
 <style lang="scss" module>
-#title {
-  font-weight: bold;
-}
-
-:global(.md-table-row) {
-  cursor: pointer;
-}
-
-// th 정렬
-:global(.md-table-head-container) {
-  text-align: center;
-}
-
-// td 정렬
-:global(.md-table-cell-container) {
-  text-align: center;
-}
 </style>
