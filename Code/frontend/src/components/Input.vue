@@ -69,7 +69,7 @@ export default {
       employeeColumns: [
         {
           label: '직원 이름',
-          field: 'empName',
+          field: 'employee.empName',
           filterable: true,
         },
         {
