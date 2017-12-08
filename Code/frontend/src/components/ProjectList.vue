@@ -9,9 +9,9 @@
             :rows="rows"
             :paginate="true"
             :lineNumbers="true"
-            :onClick="showModal"/>
+            :onClick="show"/>
+            <modal name="showEmployee"></modal>
         </div>
-
     </main>
     <footer></footer>
   </section>
@@ -29,9 +29,15 @@ export default {
   template: '#modal-template',
 
   methods: {
+    show() {
+      this.$modal.show('showEmployee');
+    },
+    hide() {
+      this.$modal.hide('showEmployee');
+    },
     getProjectList() {
       console.log('함수호출');
-      this.axios.get('http://localhost:8080/app/project/', {})
+      this.axios.get('http://localhost:8090/app/project/', {})
       .then((res) => {
         if (res.data) {
           console.log(res);

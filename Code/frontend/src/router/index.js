@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import VueGoodTable from 'vue-good-table';
-
+import VModal from 'vue-js-modal';
 // components
 const Login = () => import('../components/Login');
 const Main = () => import('../components/Main');
@@ -13,6 +13,7 @@ const Grade = () => import('../components/Grade'); // 평가 페이지에서 쓰
 
 Vue.use(Router);
 Vue.use(VueGoodTable);
+Vue.use(VModal);
 
 const routes = [
   {
