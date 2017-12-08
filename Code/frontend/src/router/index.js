@@ -7,6 +7,7 @@ const Login = () => import('../components/Login');
 const Main = () => import('../components/Main');
 const Evaluation = () => import('../components/Evaluation');
 const ProjectList = () => import('../components/ProjectList');
+const Input = () => import('../components/Input');
 const EmployeeList = () => import('../components/EmployeeList');
 const Grade = () => import('../components/Grade'); // 평가 페이지에서 쓰임.
 
@@ -46,6 +47,11 @@ const routes = [
     name: 'Grade',
     component: Grade,
     props: true,
+  },
+  {
+    path: '/input',
+    name: 'Input',
+    component: Input,
   },
 ];
 
