@@ -3,7 +3,7 @@
     <my-header></my-header>
     <div :id="$style.chartContainer">
       <div :id="$style.title">
-        <span>루피의 평가 실적</span>
+        <span>평가 실적</span>
         <md-checkbox v-model="toggle" class="md-primary">커뮤니케이션</md-checkbox>
       </div>
 
