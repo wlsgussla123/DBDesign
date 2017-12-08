@@ -11,6 +11,15 @@
       :lineNumbers="true"
       v-if="!emp">
     </vue-good-table>
+
+    <vue-good-table
+      title="투입 중 직원"
+      :columns="employeeColumns"
+      :rows="employeeRows"
+      :paginate="true"
+      :lineNumbers="true"
+      v-else>
+    </vue-good-table>
   </section>
 </template>
 
@@ -93,8 +102,27 @@ export default {
   },
 
   methods: {
-    toggle() {
+    toggle(row, index) {
       this.emp = !this.emp;
+      this.getEmployee(index);
+    },
+
+    // 프로젝트 번호를 받고, 그 프로젝트에 투입된 직원 정보를 받는다.
+    getEmployee(index) {
+      const prjNum = this.projectRows[index].prjId;
+      this.axios.get(`http://localhost:8080/app/input/${prjNum}`)
+      .then((res) => {
+        if (res.data) {
+          res.data.forEach((data) => {
+            this.employeeRows.push(data);
+          });
+        } else {
+          console.log('input employee is null');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     },
   },
 
