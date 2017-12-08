@@ -8,7 +8,7 @@
       :rows="projectRows"
       :paginate="true"
       :lineNumbers="true"
-      v-if="emp">
+      v-if="!emp">
     </vue-good-table>    
 
     <vue-good-table
@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      emp: true,
+      emp: false,
       projectList: [],
       projectColumns: [
         {
@@ -69,7 +69,7 @@ export default {
       employeeColumns: [
         {
           label: '직원 이름',
-          field: 'empName',
+          field: 'employee.empName',
           filterable: true,
         },
         {
