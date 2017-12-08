@@ -8,7 +8,8 @@
             :columns="columns"
             :rows="rows"
             :paginate="true"
-            :lineNumbers="true"/>
+            :lineNumbers="true"
+            :onClick="showModal"/>
         </div>
 
     </main>
@@ -24,6 +25,8 @@ export default {
   components: {
     myHeader: Header,
   },
+
+  template: '#modal-template',
 
   methods: {
     getProjectList() {
@@ -78,7 +81,7 @@ export default {
         },
         {
           label: '발주처',
-          field: 'cusotmer.cusName',
+          field: 'customer.cusName',
           filterable: true,
         },
       ],
