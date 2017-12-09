@@ -8,13 +8,12 @@
 * **프론트/백엔드** : 박진현(60112359)
 
 ## Prerequisites
-* [Node.js 8+]
+* Node.js 8+
 
 ## Browser Compatibility
 
-* [Google Chrome 62+]
-* [Firefox 57+] (unofficial)
-* [Microsoft Edge 16+] (unofficial)
+* Google Chrome 62+
+* Microsoft Edge 16+ (unofficial)
 
 ## Skill Stacks
 *Frontend : Vue.js, Webpack, sass/scss, HTML5, ES2015 
