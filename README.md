@@ -16,5 +16,5 @@
 * Microsoft Edge 16+ (unofficial)
 
 ## Skill Stacks
-*Frontend : Vue.js, Webpack, sass/scss, HTML5, ES2015 
-*Backend : Spring, MyBatis, MySQL
+* Frontend : Vue.js, Webpack, sass/scss, HTML5, ES2015 
+* Backend : Spring, MyBatis, MySQL
