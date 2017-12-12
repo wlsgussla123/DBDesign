@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mju.app.domain.Employee;
 
 @Repository
-@Transactional
 public class EmployeeDao {
 	private final String NAMESPACE = "com.mju.app.mapper.EmployeeMapper.";
 	

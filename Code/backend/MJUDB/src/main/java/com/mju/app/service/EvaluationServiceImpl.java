@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mju.app.dao.CustomerDao;
 import com.mju.app.dao.EmployeeDao;
@@ -12,6 +13,7 @@ import com.mju.app.dao.ProjectDao;
 import com.mju.app.domain.Evaluation;
 
 @Service
+@Transactional
 public class EvaluationServiceImpl implements EvaluationService {
 	@Autowired
 	private EvaluationDao evaluationDao;

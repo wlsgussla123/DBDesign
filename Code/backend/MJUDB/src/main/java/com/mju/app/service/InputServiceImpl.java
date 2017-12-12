@@ -6,11 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mju.app.dao.InputDao;
 import com.mju.app.domain.Input;
 
 @Service
+@Transactional
 public class InputServiceImpl implements InputService {
 	private static final Logger logger = LoggerFactory.getLogger(Input.class);
 

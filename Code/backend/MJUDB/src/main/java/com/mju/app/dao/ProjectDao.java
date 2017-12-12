@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mju.app.domain.Project;
 
 @Repository
-@Transactional
 public class ProjectDao {
 	private final String NAMESPACE = "com.mju.app.mapper.ProjectMapper.";
 

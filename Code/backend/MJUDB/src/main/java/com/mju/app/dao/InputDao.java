@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import com.mju.app.domain.Input;
 
 @Repository
-@Transactional
 public class InputDao {
 
 	private static final Logger logger = LoggerFactory.getLogger(Input.class);

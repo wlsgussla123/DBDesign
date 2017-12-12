@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mju.app.domain.Evaluation;
 
 @Repository
-@Transactional
 public class EvaluationDao {
 	private final String NAMESPACE = "com.mju.app.mapper.EvaluationMapper.";
 	
