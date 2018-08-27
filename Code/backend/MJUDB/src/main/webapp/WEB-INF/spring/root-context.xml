@@ -15,7 +15,7 @@
 		<property name="url"
 			value="jdbc:mysql://localhost/mju?autoReconnect=true&amp;useSSL=false" />
 		<property name="username" value="root" />
-		<property name="password" value="pjh1234" />
+		<property name="password" value="****" />
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
